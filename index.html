@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Elemental Story Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ——————————————— */
+/* BACKGROUND USING YOUR JESUS IMAGE */
+/* ——————————————— */
+body {
+    margin: 0;
+    overflow: hidden;
+    background: url("YOUR_IMAGE_FILE_NAME.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ——————————————— */
+/* FLOATING CLOUDS LAYER */
+/* ——————————————— */
+.cloud {
+    position: absolute;
+    top: 10%;
+    width: 280px;
+    opacity: 0.7;
+    animation: floatClouds 60s linear infinite;
+}
+
+@keyframes floatClouds {
+    from { transform: translateX(-40%); }
+    to { transform: translateX(120%); }
+}
+
+/* ——————————————— */
+/* GLASS LOGIN UI – BOUNCY (SPRING PHYSICS) */
+/* ——————————————— */
+#loginBox {
+    position: absolute;
+    width: 280px;
+    height: 320px;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%) scale(1);
+    padding: 20px;
+    border-radius: 20px;
+
+    backdrop-filter: blur(18px) saturate(170%);
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    animation: bounceIn 1.3s cubic-bezier(.28,1.40,.58,1.00);
+}
+
+@keyframes bounceIn {
+    0%   { transform: translate(-50%, -50%) scale(0.5); }
+    60%  { transform: translate(-50%, -50%) scale(1.15); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+input {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255,255,255,0.7);
+}
+
+button {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #ffffffaa;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* ——————————————— */
+/* ELEMENTAL STORY BUTTON AFTER LOGIN */
+/* ——————————————— */
+#elementBtn {
+    position: absolute;
+    display: none;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 26px;
+    font-size: 18px;
+
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+/* ——————————————— */
+/* FULLSCREEN STORY PANEL */
+/* ——————————————— */
+#storyPanel {
+    position: fixed;
+    inset: 0;
+    display: none;
+
+    backdrop-filter: blur(22px);
+    background: rgba(0,0,0,0.40);
+    padding: 40px;
+    color: white;
+    overflow-y: auto;
+}
+
+#storyContent {
+    max-width: 800px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(20px);
+}
+</style>
+</head>
+<body>
+
+<!-- CLOUDS -->
+<img src="https://i.imgur.com/7V5q7gE.png" class="cloud" style="top:20%; animation-delay:0s;">
+<img src="https://i.imgur.com/7V5q7gE.png" class="cloud" style="top:40%; animation-delay:15s;">
+<img src="https://i.imgur.com/7V5q7gE.png" class="cloud" style="top:60%; animation-delay:30s;">
+
+<!-- LOGIN BOX -->
+<div id="loginBox">
+    <h3 style="text-align:center;color:white;letter-spacing:1px;">Login</h3>
+    <input id="user" placeholder="Username">
+    <input id="pass" placeholder="Password" type="password">
+    <button onclick="login()">Enter</button>
+</div>
+
+<!-- ELEMENT STORY BUTTON -->
+<button id="elementBtn" onclick="openStory()">Elemental Origins</button>
+
+<!-- FULLSCREEN STORY UI -->
+<div id="storyPanel">
+    <div id="storyContent"></div>
+</div>
+
+<script>
+function login() {
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("elementBtn").style.display = "block";
+}
+
+function openStory() {
+    document.getElementById("storyPanel").style.display = "block";
+    document.getElementById("storyContent").innerHTML = ELEMENTAL_STORY;
+}
+
+const ELEMENTAL_STORY = `
+<h1>Origins of the Elements</h1>
+<p>
+(Your 2000-word elemental story will be injected here — tell me when you want the full 2000-word version and I’ll paste it in.)
+</p>`;
+</script>
+</body>
+</html>
